@@ -1,7 +1,7 @@
-CREATE TABLE listofIDS(
-student_id integer primary key);
+CCREATE TABLE listofIDS(
+student_id integer NOT NULL);
 
-INSERT INTO listofIDS(student_id)
-VALUES('861265108');
 
-Select * from listofIDS;
+
+COPY listofIDS(student_id) 
+FROM '/Users/JerryTan/Desktop/sample.csv' DELIMITER ',' CSV HEADER;
