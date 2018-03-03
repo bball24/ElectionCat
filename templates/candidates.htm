@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <meta charset="UTF-8">
+    <title>Candidates</title>
+</head>
 <style>
 a {
   text-decoration: none;
 }
 
 h1 {
-  color: #dddddd;
+  color: #cccccc;
 }
 
 h2 {
-  color: #00dd00;
+  color: #cccccc;
 }
 
 h3 {
-  color: #bbbbbb;
+  color: #ff9900;
 }
 
 p {
@@ -22,7 +26,12 @@ p {
 }
 
 button {
-  color: #ffffff;
+  color: #ff9900;
+  width: 100%;
+}
+
+button.return {
+  color: #ff9900;
   width: 100%;
 }
 
@@ -42,6 +51,17 @@ div.item-center {
   border-style: solid;
 }
 
+div.return-bar {
+  width: 30%;
+  display: block;
+  background-color: #223399;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+  border-color:#ff9900
+}
+
 div.vote-bar-yes {
   width: 30%;
   height: 10px;
@@ -58,14 +78,14 @@ div.vote-bar-yes {
   <div class="header-center"><h1><font face="sans" size="20">{{ position }} Candidates:</font></h1></div>
       {% for candidate, candidate_bio in candidates.items() %}
           <div class="item-center">
-              <p>{{ candidate }}</p>
-              <p>{{ candidate_bio }}</p>
+              <p><font face="sans"><b>{{ candidate }}</b></font></p>
+              <p><font face="sans">{{ candidate_bio }}</font></p>
               <form method="POST" action="/vote" class="inline">
                   <input type="hidden" name="userID" value="{{ userID }}">
                   <input type="hidden" name="position" value="{{ position }}">
                   <input type="hidden" name="candidate" value="{{ candidate }}">
                 <button type="submit" name="submit_param" value="submit_value" class="link-button">
-                  VOTE!
+                  <b>VOTE!</b>
                 </button>
               </form>
           </div>
@@ -78,8 +98,11 @@ div.vote-bar-yes {
   <br>
     <form method="POST" action="/positions" class="inline">
       <input type="hidden" name="userID" value="{{ userID }}">
-        <a>Return</a>
-    </button>
+        <div class="return-bar">
+        <button type="submit" class="return">
+          <h3>Return</h3>
+        </button>
+        </div>
     </form>
   </body>
 </html>

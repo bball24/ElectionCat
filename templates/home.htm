@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to the Election!</title>
+</head>
 
 <style>
 
@@ -36,7 +40,12 @@ div.item-center {
     <body>
         <div class="header-center"><img src="https://www.acmucr.org/img/acm_ucr.png" alt="ACM@UCR Logo" width=auto height="250"></div>
         <div class="header-center"><h1><font face="sans" size="40">Welcome to ACM@UCR's Election!</font></h1></div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <div class="item-center"><a href="login"><p><font face="sans" size="20">Login</font></p></a></div>
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+        {% if voting_open %}
+          <div class="header-center"><h1><font face="sans" size="20">Voting is open!</font></h1></div><br><br>
+          <div class="item-center"><a href="login"><p><font face="sans" size="10">Login</font></p></a></div>
+        {% else %}
+          <div class="header-center"><h1><font face="sans" size="20">Voting is not currently open</font></h1></div>
+        {% endif %}
     </body>
 </html>
