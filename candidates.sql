@@ -1,7 +1,5 @@
 CREATE TABLE candidates(
-	Candidate_firstName VARCHAR(50) UNIQUE NOT NULL,
-	Candidate_lastName VARCHAR(50) NOT NULL,
-	/* make type for candidate info 
-	*/
-	
-)
+	Candidate_name VARCHAR(50) PRIMARY KEY,
+	Candidate_bio VARCHAR(65535) NOT NULL,
+	Candidate_position VARCHAR(50) NOT NULL
+);
