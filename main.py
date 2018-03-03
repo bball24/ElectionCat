@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, make_response
+from flask import Flask, request, render_template, make_response, redirect
 import frontend
 import os
 app = Flask(__name__)
@@ -25,13 +25,9 @@ def login():
     return render_template('login.htm')
 
 
-# @app.route('/verify_login', methods=['POST'])
-# def verify_login():
-#     userID = request.form['userID']
-#     userID = userID.lower()
-#     print(userID)
-#
-#     return get_positions()
+@app.route('/positions', methods=['GET'])
+def route_positions():
+    return redirect("/", code=302)
 
 
 @app.route('/positions', methods=['POST'])
@@ -42,6 +38,11 @@ def get_positions():
     # user_position_votes = get_user_votes_positions(userID)
     user_position_votes = ["President"]
     return render_template('positions.htm', userID=userID, positions=positions, position_votes=user_position_votes)
+
+
+@app.route('/candidates', methods=['GET'])
+def route_candidates():
+    return redirect("/", code=302)
 
 
 @app.route('/candidates', methods=['POST'])
@@ -60,6 +61,9 @@ def get_candidates():
 
     return render_template('candidates.htm', userID=userID, position=requested_position, candidates=candidates[requested_position], current_vote=user_candidate_position_vote)
 
+@app.route('/vote', methods=['GET'])
+def route_vote():
+    return redirect("/", code=302)
 
 @app.route('/vote', methods=['POST'])
 def place_vote():
@@ -79,6 +83,11 @@ def end():
     return render_template("end.htm")
 
 
+@app.route('/start_voting', methods=['GET'])
+def route_start_voting():
+    return redirect("/", code=302)
+
+
 @app.route('/start_voting', methods=['POST'])
 def start_voting():
     admin_key = request.form['admin_key']
@@ -87,6 +96,11 @@ def start_voting():
     if admin_key == settings["admin_key"]:
         voting_open = True
     return render_template('election_start.htm')
+
+
+@app.route('/end_election', methods=['GET'])
+def route_end_election():
+    return redirect("/", code=302)
 
 
 @app.route('/end_election', methods=['POST'])
