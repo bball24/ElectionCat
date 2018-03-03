@@ -1,25 +1,19 @@
-def create_webpage():
-    print("in create_webpage")
-    return
+def load_settings():
+    settings = {}
+    with open("settings.cfg", "r") as settings_file:
+        lines = settings_file.readlines()
+        for line in lines:
+            if line[0] == "#" or line == "\n" or line == "":
+                continue
+            key = line[:line.find("=")]
+            value = line[line.find("=")+1:-1]
+            settings[key] = value
 
-def create_login_page():
-    print("in create_login_page")
-    return
+    return settings
 
-def create_positions_page():
-    print("in create_positions_page")
-    return
 
-def create_candidates_page():
-    print("in create_candidates_page")
-    return
-
-def create_start_page():
-    print("in create_start_page")
-    return
-
-def create_end_page():
-    print("in create_end_page")
-    return
-
-# some random comment
+def check_admin_key(key, settings):
+    if key == settings["admin_key"]:
+        return True
+    else:
+        return False

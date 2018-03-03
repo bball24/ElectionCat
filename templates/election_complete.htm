@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h>Election complete!</h>
+<br>
+<h>Results:</h>
+    {% for position, candidate_profiles in results.items() %}
+       <h>{{ position }}</h> <br>
+        {% for candidate in candidate_profiles %}
+            {% for name, votes in candidate.items() %}
+                 <h2> {{ name }} -- {{ votes }} votes!</h2><br>
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+</body>
+</html>

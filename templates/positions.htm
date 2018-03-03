@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <body>
+      <h1>Positions:</h1>
+      {% for position in positions %}
+
+      <form method="POST" action="/candidates" class="inline">
+        <input type="hidden" name="position" value="{{ position }}">
+          <input type="hidden" name="userID" value="{{ userID }}">
+        <button type="submit" name="submit_param" value="submit_value" class="link-button">
+          {{ position }}
+        </button>
+      </form>
+
+        {% if position in position_votes %}
+          <div>You have voted for this position</div>
+        {% else %}
+            <div>you have not voted for this position</div>
+        {% endif %}
+
+      <br>
+      {% endfor %}
+  </body>
+</html>

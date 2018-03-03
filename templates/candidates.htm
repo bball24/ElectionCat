@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <body>
+      <h1>Candidates:</h1>
+      {% for candidate, candidate_bio in candidates.items() %}
+          <div>
+              <p>{{ candidate }}</p>
+              {% if candidate == current_vote %}
+                  <div>You have voted for this candidate</div>
+              {% endif %}
+              <p>{{ candidate_bio }}</p>
+              <form method="POST" action="/vote" class="inline">
+                  <input type="hidden" name="userID" value="{{ userID }}">
+                  <input type="hidden" name="position" value="{{ position }}">
+                  <input type="hidden" name="candidate" value="{{ candidate }}">
+                <button type="submit" name="submit_param" value="submit_value" class="link-button">
+                  VOTE!
+                </button>
+              </form>
+          </div>
+          <br>
+      {% endfor %}
+  <br>
+  <br>
+    <form method="POST" action="/positions" class="inline">
+      <input type="hidden" name="userID" value="{{ userID }}">
+    <button type="submit" name="submit_param" value="submit_value" class="link-button">
+      Return
+    </button>
+    </form>
+  </body>
+</html>
