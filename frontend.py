@@ -9,3 +9,5 @@ def create_candidates_page():
 
 def create_end_page():
     return
+
+# some random comment
