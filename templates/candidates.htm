@@ -19,7 +19,6 @@ h3 {
 
 p {
   color: #ffffff;
-  padding: 40px 10px;
 }
 
 button {
@@ -56,13 +55,10 @@ div.vote-bar-yes {
 </style>
   <body>
   <div class="header-center"><img src="https://www.acmucr.org/img/acm_ucr.png" alt="ACM@UCR Logo" width=auto height="150"></div>
-      <div class="header-center"><h1><font face="sans" size="20">{{ position }} Candidates:</font></h1></div>
+  <div class="header-center"><h1><font face="sans" size="20">{{ position }} Candidates:</font></h1></div>
       {% for candidate, candidate_bio in candidates.items() %}
           <div class="item-center">
               <p>{{ candidate }}</p>
-              {% if candidate == current_vote %}
-                  <div>You have voted for this candidate</div>
-              {% endif %}
               <p>{{ candidate_bio }}</p>
               <form method="POST" action="/vote" class="inline">
                   <input type="hidden" name="userID" value="{{ userID }}">
@@ -73,14 +69,16 @@ div.vote-bar-yes {
                 </button>
               </form>
           </div>
+            {% if candidate == current_vote %}
+               <div class="vote-bar-yes"></div>
+            {% endif %}
           <br>
       {% endfor %}
   <br>
   <br>
     <form method="POST" action="/positions" class="inline">
       <input type="hidden" name="userID" value="{{ userID }}">
-    <button type="submit" name="submit_param" value="submit_value" class="link-button">
-      Return
+        <a>Return</a>
     </button>
     </form>
   </body>

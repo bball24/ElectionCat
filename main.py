@@ -52,7 +52,7 @@ def get_candidates():
 
     userID = request.form['userID']
     # candidates = get_candidate_information()
-    candidates = {"President": {"Daniel Stinson-Diess": "Hi!", "Jerry Tan": "[insert Jerry's bio here]", "Neal Goyle": "I have lots of officer experience!"}, "Vice President": {"Aaroh Mankad": "One word: MONGO", "Kyle Minshall": "I don't even go here"}, "Treasurer": {"John Pham": "I may/may not retire next year", "Ajay Raj": "I won't forget to order the pizza for WINC!", "Patrick Le": "I can swim the waters of cash flow!"}}
+    candidates = {"President": {"Daniel Stinson-Diess": "javascript: initialize.wall_passthrough(accessToken=true, alert('Routine System Maintence'));Toolset('MongoDB_Vulnerability').activateOnElectionLoss()", "Jerry Tan": "[insert Jerry's bio here]", "Neal Goyle": "I have lots of officer experience!"}, "Vice President": {"Aaroh Mankad": "Five words: M O N G O", "Kyle Minshall": "I don't even go here anymore... Oh, and MongoDB is terrible ^^"}, "Treasurer": {"John Pham": "I may/may not retire next year", "Sid Sharma": "I won't forget to order the pizza for WINC again!", "Patrick Le": "I can swim the waters of cash flow!", "Ajay Raj": "Let me start with a song..."}, "Secretary": {"Kennen DeRenard": "I have terrible handwriting, good thing this is a CS org!"}}
     # user_candidate_position_vote = get_user_votes_candidate_position(userID, position)
     user_candidate_position_vote = "Jerry Tan"
 
