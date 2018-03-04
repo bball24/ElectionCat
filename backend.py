@@ -16,6 +16,13 @@ cur2.execute(query2);
 data2 = cur2.fetchall();
 print(data2);
 
+conn3 = pg2.connect(database = 'Votes', user = 'postgres', password = 'slasher56')
+cur3 = conn3.cursor();
+
+query3 = 'SELECT * from votes'
+cur3.execute(query3);
+data3 = cur3.fetchall();
+print(data3);
 
 
 #def returnDictionaries():
