@@ -97,7 +97,7 @@ def place_vote():
     return render_template('vote_success.htm', userID=userID)
 
 
-@app.route("/end")
+@app.route("/stop")
 def end():
     return render_template("end.htm")
 
@@ -118,6 +118,8 @@ def start_voting():
     if admin_key == settings["admin_key"]:
         global voting_open
         voting_open = True
+        with open("databases/votes.json", "w") as votes_file:
+            votes_file.write('{"": {}}')
         return render_template('election_started.htm')
     else:
         return render_template('invalid_login.htm')
