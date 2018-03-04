@@ -84,8 +84,8 @@ div.vote-bar-yes {
                   <input type="hidden" name="userID" value="{{ userID }}">
                   <input type="hidden" name="position" value="{{ position }}">
                   <input type="hidden" name="candidate" value="{{ candidate }}">
-                <button type="submit" name="submit_param" value="submit_value" class="link-button" style="height:40px">
-                    <h3><b>VOTE!</b></h3>
+                <button type="submit" name="submit_param" value="submit_value" class="link-button" style="height:40px; background-color:#ff9900">
+                    <b>VOTE!</b>
                 </button>
               </form>
           </div>
@@ -99,7 +99,7 @@ div.vote-bar-yes {
     <form method="POST" action="/m_positions" class="inline">
       <input type="hidden" name="userID" value="{{ userID }}">
         <div class="return-bar">
-        <button type="submit" class="return">
+        <button type="submit" class="return" style="height:40px">>
           <h3>Return</h3>
         </button>
         </div>
