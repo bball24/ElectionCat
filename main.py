@@ -11,8 +11,7 @@ voting_open = False
 @app.route('/')
 def hello():
     global voting_open
-    return "hello" + str(voting_open)
-#    return render_template('home.htm', voting_open=voting_open)
+    return render_template('home.htm', voting_open=voting_open)
 
 
 @app.route('/reload')
