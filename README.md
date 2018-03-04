@@ -10,7 +10,7 @@ https://electioncat.azurewebsites.net/
 
 
 
-#Authors:
+# Authors:
 
 Jack Kolb
 Jerry Tan
