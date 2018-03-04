@@ -10,7 +10,7 @@ global voting_open
 @app.route('/')
 def hello():
     global voting_open
-    return '<html>' + str(voting_open) + "</html>"
+    return '<html>' + "hello" + "</html>"
 #    return render_template('home.htm', voting_open=voting_open)
 
 
