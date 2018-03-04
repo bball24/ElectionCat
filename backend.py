@@ -21,11 +21,15 @@ print(data2);
 #def returnDictionaries():
  #   return
 
-#def checkID():
- #   return
+def checkID():
+ list = []; # need to obtain list of all voter ids
+ for i in list
+	if len(list[i]) < 9 and list[0:3] != "861"
+ 		return false;
+
+ return true;
 
 #def addVotes();
-#	return
 
 #def returnTotal();
 	#return

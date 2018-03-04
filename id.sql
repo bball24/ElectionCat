@@ -1,4 +1,4 @@
-CCREATE TABLE listofIDS(
+CREATE TABLE listofIDS(
 student_id integer NOT NULL);
 
 
