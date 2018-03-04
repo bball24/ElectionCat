@@ -1,12 +1,21 @@
 
-def returnDictionaries():
+def get_users():
     return
 
-def checkID():
+def get_positions():
     return
 
-def addVotes();
-	return
+def get_user_votes_positions():
+    return
 
-def returnTotal();
-	return
+def get_candidate_information():
+    return
+
+def get_user_votes_candidate_position():
+    return
+
+def place_vote():
+    return
+
+def get_vote_results():
+    return
