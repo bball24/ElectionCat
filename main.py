@@ -1,6 +1,5 @@
-from flask import Flask, request, render_template, make_response, redirect
+from flask import Flask, request, render_template, redirect
 import frontend
-import os
 app = Flask(__name__)
 
 global settings
