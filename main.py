@@ -4,7 +4,8 @@ import os
 app = Flask(__name__)
 
 global settings
-global voting_open
+#global voting_open
+voting_open = False
 
 
 @app.route('/')
@@ -126,6 +127,5 @@ def end_election():
 if __name__ == '__main__':
     global settings
     settings = frontend.load_settings()
-    global voting_open
     voting_open = False
     app.run()
