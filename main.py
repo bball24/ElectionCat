@@ -97,7 +97,7 @@ def route_start_voting():
 @app.route('/start_voting', methods=['POST'])
 def start_voting():
     admin_key = request.form['admin_key']
-    return "Hello"
+    return "Hello: " + str(admin_key)
     if admin_key == settings["admin_key"]:
         global voting_open
         voting_open = True
