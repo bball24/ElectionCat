@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, make_response, redirect
 import frontend
-import os
+import backend
 app = Flask(__name__)
 
 global settings
@@ -37,14 +37,14 @@ def route_positions():
 def get_positions():
     userID = request.form['userID']
 
-    # users = get_users()
-    users = ["1000", "1001", "1002", "1003", "1004", "1005", "1006", "1007", "1008", "1009", "1010"]
+    users = backend.get_users()
+#    users = ["1000", "1001", "1002", "1003", "1004", "1005", "1006", "1007", "1008", "1009", "1010"]
     if str(userID) not in users:
         return render_template("invalid_login.htm")
-    # positions = get_positions()
-    positions = ["President", "Vice President", "Treasurer", "Secretary"]
-    # user_position_votes = get_user_votes_positions(userID)
-    user_position_votes = ["President"]
+    positions = backend.get_positions()
+    #positions = ["President", "Vice President", "Treasurer", "Secretary"]
+    user_position_votes = backend.get_user_votes_positions(userID)
+    #user_position_votes = ["President"]
     return render_template('positions.htm', userID=userID, positions=positions, position_votes=user_position_votes)
 
 
@@ -59,10 +59,10 @@ def get_candidates():
     requested_position = requested_position
 
     userID = request.form['userID']
-    # candidates = get_candidate_information()
-    candidates = {"President": {"Daniel Stinson-Diess": "javascript: initialize.wall_passthrough(accessToken=true, alert('Routine System Maintence'));Toolset('MongoDB_Vulnerability').activateOnElectionLoss()", "Jerry Tan": "[insert Jerry's bio here]", "Neal Goyle": "I have lots of officer experience!"}, "Vice President": {"Aaroh Mankad": "Five words: M O N G O", "Kyle Minshall": "I don't even go here anymore... Oh, and MongoDB is terrible ^^"}, "Treasurer": {"John Pham": "I may/may not retire next year", "Sid Sharma": "I won't forget to order the pizza for WINC again!", "Patrick Le": "I can swim the waters of cash flow!", "Ajay Raj": "Let me start with a song..."}, "Secretary": {"Kennen DeRenard": "I have terrible handwriting, good thing this is a CS org!"}}
-    # user_candidate_position_vote = get_user_votes_candidate_position(userID, position)
-    user_candidate_position_vote = "Jerry Tan"
+    candidates = backend.get_candidate_information()
+    #candidates = {"President": {"Daniel Stinson-Diess": "javascript: initialize.wall_passthrough(accessToken=true, alert('Routine System Maintence'));Toolset('MongoDB_Vulnerability').activateOnElectionLoss()", "Jerry Tan": "[insert Jerry's bio here]", "Neal Goyle": "I have lots of officer experience!"}, "Vice President": {"Aaroh Mankad": "Five words: M O N G O", "Kyle Minshall": "I don't even go here anymore... Oh, and MongoDB is terrible ^^"}, "Treasurer": {"John Pham": "I may/may not retire next year", "Sid Sharma": "I won't forget to order the pizza for WINC again!", "Patrick Le": "I can swim the waters of cash flow!", "Ajay Raj": "Let me start with a song..."}, "Secretary": {"Kennen DeRenard": "I have terrible handwriting, good thing this is a CS org!"}}
+    user_candidate_position_vote = backend.get_user_votes_candidate_position(userID, requested_position)
+    #user_candidate_position_vote = "Jerry Tan"
 
     if requested_position not in candidates.keys():
         return render_template('error.htm')
@@ -79,8 +79,8 @@ def place_vote():
     position = request.form['position']
     candidate = request.form['candidate']
 
-    print("vote placed by " + userID + " for " + candidate + " for " + position)
-    #place_vote(id, position, candidate)
+#    print("vote placed by " + userID + " for " + candidate + " for " + position)
+    backend.place_vote(userID, position, candidate)
     return render_template('vote_success.htm', userID=userID)
 
 
@@ -120,8 +120,8 @@ def end_election():
     if not frontend.check_admin_key(admin_key, settings):
         return render_template('invalid_login.htm')
 
-    # vote_results = get_vote_results()
-    vote_results = {"President": [{"Jack Kolb": 15, "Jerry Tan": 42, "Neal Goyle": 23}], "Vice President": [{"Kyle Minshal": 15, "Aaroh": 42, "Patrick": 23}]}
+    vote_results = backend.get_vote_results()
+    #vote_results = {"President": [{"Jack Kolb": 15, "Jerry Tan": 42, "Neal Goyle": 23}], "Vice President": [{"Kyle Minshal": 15, "Aaroh": 42, "Patrick": 23}]}
     return render_template('election_complete.htm', results=vote_results)
 
 

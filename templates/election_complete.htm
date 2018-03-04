@@ -82,12 +82,11 @@ div.item-center-candidates {
   <br>
     {% for position, candidate_profiles in results.items() %}
   <div class="item-center-positions"><font face="sans"><h1>{{ position }}</h1></font></div>
-        {% for candidate in candidate_profiles %}
-            {% for name, votes in candidate.items() %}
+        {% for name, votes in candidate_profiles.items() %}
   <div class="item-center-candidates"><font face="sans"><h2> {{ name }} -- {{ votes }} votes!</h2></font></div>
-            {% endfor %}
-            <br>
+
         {% endfor %}
+  <br>
     {% endfor %}
 </body>
 </html>
