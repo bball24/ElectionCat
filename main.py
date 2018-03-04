@@ -3,8 +3,9 @@ import frontend
 import os
 app = Flask(__name__)
 
+global settings
 settings = {}
-#global voting_open
+global voting_open
 voting_open = False
 
 
@@ -71,9 +72,7 @@ def route_vote():
 def place_vote():
     userID = request.form['userID']
     position = request.form['position']
-    position = position.lower()
     candidate = request.form['candidate']
-    candidate = candidate.lower()
 
     print("vote placed by " + userID + " for " + candidate + " for " + position)
     #place_vote(id, position, candidate)
@@ -98,7 +97,6 @@ def route_start_voting():
 @app.route('/start_voting', methods=['POST'])
 def start_voting():
     admin_key = request.form['admin_key']
-    admin_key = admin_key.lower()
     print(admin_key)
     if admin_key == settings["admin_key"]:
         global voting_open
