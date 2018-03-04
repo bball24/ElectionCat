@@ -1,0 +1,36 @@
+{
+  "President":
+  {
+    "Jack Kolb": "My name is Jack!",
+    "Aaroh Mankad": "My name is Aaroh!",
+    "Daniel Stinson-Diess": "My name is Daniel!"
+  },
+
+  "Vice President":
+  {
+    "Jerry Tan": "My name is Jerry!",
+    "Neal Goyle": "My name is Neal!",
+    "Patrick": "My name is Patrick!"
+  },
+
+  "Treasurer":
+  {
+    "Sid Sharma": "I promise! Never again!",
+    "Ajay Raj": "I shall start with a song...",
+    "Patrick Le": "I'm swimming in money"
+  },
+
+  "Secretary":
+  {
+    "Kennen DeRenard": "I promise! Never again!",
+    "John Pham": "I shall start with a song...",
+    "Harley Selzer": "I'm swimming in money"
+  },
+
+  "Outreach Chair":
+  {
+    "Jerry Jiang": "I promise! Never again!",
+    "Will Shiao": "I shall start with a song...",
+    "Cameron Morrin": "I'm swimming in money"
+  }
+}

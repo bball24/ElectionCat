@@ -1,0 +1,36 @@
+{
+  "President":
+  {
+    "Jack Kolb": "3",
+    "Aaroh Mankad": "14",
+    "Daniel Stinson-Diess": "24"
+  },
+
+  "Vice President":
+  {
+    "Jerry Tan": "92",
+    "Neal Goyle": "32",
+    "Patrick": "42"
+  },
+
+  "Treasurer":
+  {
+    "Sid Sharma": "47",
+    "Ajay Raj": "74",
+    "Patrick Le": "474"
+  },
+
+  "Secretary":
+  {
+    "Kennen DeRenard": "3",
+    "John Pham": "2",
+    "Harley Selzer": "1"
+  },
+
+  "Outreach Chair":
+  {
+    "Jerry Jiang": "49",
+    "Will Shiao": "48",
+    "Cameron Morrin": "50"
+  }
+}
