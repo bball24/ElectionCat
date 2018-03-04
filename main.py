@@ -1,5 +1,6 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, make_response, redirect
 import frontend
+import os
 app = Flask(__name__)
 
 global settings
@@ -8,8 +9,9 @@ global voting_open
 
 @app.route('/')
 def hello():
-    global voting_open
-    return render_template('home.htm', voting_open=voting_open)
+    return render_template('error.htm')
+#    global voting_open
+#    return render_template('home.htm', voting_open=voting_open)
 
 
 @app.route('/reload')
