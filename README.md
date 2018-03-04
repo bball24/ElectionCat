@@ -12,5 +12,5 @@ https://electioncat.azurewebsites.net/
 
 # Authors:
 
-Jack Kolb
-Jerry Tan
+Jack Kolb <br />
+Jerry Tan <br />
