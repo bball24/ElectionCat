@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to the Election!</title>
+</head>
+
+<style>
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  color: #cccccc;
+}
+
+p {
+  color: #ffffff;
+  padding: 5px;
+}
+
+div.header-center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.item-center {
+  width: 20%;
+  display: block;
+  background-color: #003399;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+}
+
+</style>
+<html>
+    <body>
+        <div class="header-center"><img src="https://www.acmucr.org/img/acm_ucr.png" alt="ACM@UCR Logo" width=auto height="250"></div>
+        <div class="header-center"><h1><font face="sans" size="40">Welcome to ACM@UCR's Election!</font></h1></div>
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+        {% if voting_open %}
+          <div class="header-center"><h1><font face="sans" size="20">Voting is open!</font></h1></div><br><br>
+          <div class="item-center"><a href="m_login"><p><font face="sans" size="10">Login</font></p></a></div>
+        {% else %}
+          <div class="header-center"><h1><font face="sans" size="20">Voting is not currently open</font></h1></div>
+        {% endif %}
+    </body>
+</html>

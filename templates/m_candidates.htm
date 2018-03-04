@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Candidates</title>
+</head>
+<style>
+a {
+  text-decoration: none;
+}
+
+h1 {
+  color: #cccccc;
+}
+
+h2 {
+  color: #cccccc;
+}
+
+h3 {
+  color: #ff9900;
+}
+
+p {
+  color: #ffffff;
+}
+
+button {
+  color: #ff9900;
+  width: 100%;
+}
+
+button.return {
+  color: #ff9900;
+  width: 100%;
+}
+
+div.header-center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.item-center {
+  width: 50%;
+  display: block;
+  background-color: #003399;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+}
+
+div.return-bar {
+  width: 50%;
+  display: block;
+  background-color: #223399;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+  border-color:#ff9900
+}
+
+div.vote-bar-yes {
+  width: 50%;
+  height: 10px;
+  display: block;
+  background-color: #00dd00;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: none;
+}
+</style>
+  <body>
+  <div class="header-center"><img src="https://www.acmucr.org/img/acm_ucr.png" alt="ACM@UCR Logo" width=auto height="150"></div>
+  <div class="header-center"><h1><font face="sans" size="20">{{ position }} Candidates:</font></h1></div>
+      {% for candidate, candidate_bio in candidates.items() %}
+          <div class="item-center">
+              <p><font face="sans"><b>{{ candidate }}</b></font></p>
+              <p><font face="sans">{{ candidate_bio }}</font></p>
+              <form method="POST" action="/m_vote" class="inline">
+                  <input type="hidden" name="userID" value="{{ userID }}">
+                  <input type="hidden" name="position" value="{{ position }}">
+                  <input type="hidden" name="candidate" value="{{ candidate }}">
+                <button type="submit" name="submit_param" value="submit_value" class="link-button">
+                    <h3><b>VOTE!</b></h3>
+                </button>
+              </form>
+          </div>
+            {% if candidate == current_vote %}
+               <div class="vote-bar-yes"></div>
+            {% endif %}
+          <br>
+      {% endfor %}
+  <br>
+  <br>
+    <form method="POST" action="/m_positions" class="inline">
+      <input type="hidden" name="userID" value="{{ userID }}">
+        <div class="return-bar">
+        <button type="submit" class="return">
+          <h3>Return</h3>
+        </button>
+        </div>
+    </form>
+  </body>
+</html>

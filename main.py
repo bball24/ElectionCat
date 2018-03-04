@@ -32,6 +32,27 @@ def hello():
         return render_template("results.htm", vote_results=new_results)
     return render_template('home.htm', voting_open=voting_open)
 
+@app.route('/m')
+def m_hello():
+    global voting_open
+    if show_results:
+        print(str(backend.get_vote_results()))
+        results = backend.get_vote_results()
+        new_results = {}
+        for position in list(results.keys()):
+            name = []
+            votes = "0"
+            for candidate in list(results[position].keys()):
+                if int(results[position][candidate]) == int(votes):
+                    new_results[position].append(candidate)
+                    votes = results[position][candidate]
+                elif int(results[position][candidate]) > int(votes):
+                    new_results[position] = [candidate]
+                    votes = results[position][candidate]
+        print(str(new_results))
+        return render_template("m_results.htm", vote_results=new_results)
+    return render_template('m_home.htm', voting_open=voting_open)
+
 
 @app.route('/reload')
 def reset():
@@ -43,8 +64,17 @@ def reset():
 
 @app.route('/login')
 def login():
-    return render_template('login.htm')
+    if voting_open:
+        return render_template('login.htm')
+    else:
+        return redirect("/", code=302)
 
+@app.route('/m_login')
+def m_login():
+    if voting_open:
+        return render_template('m_login.htm')
+    else:
+        return redirect("/", code=302)
 
 @app.route('/positions', methods=['GET'])
 def route_positions():
@@ -63,6 +93,23 @@ def get_positions():
     user_position_votes = backend.get_user_votes_positions(userID)
     return render_template('positions.htm', userID=userID, positions=positions, position_votes=user_position_votes)
 
+@app.route('/m_positions', methods=['GET'])
+def m_route_positions():
+    return redirect("/m", code=302)
+
+
+@app.route('/m_positions', methods=['POST'])
+def m_get_positions():
+    userID = request.form['userID']
+    if show_results:
+        return render_template("m_results.htm", vote_results=backend.get_vote_results())
+    users = backend.get_users()
+    if str(userID) not in users:
+        return render_template("m_invalid_login.htm")
+    positions = backend.get_positions()
+    user_position_votes = backend.get_user_votes_positions(userID)
+    return render_template('m_positions.htm', userID=userID, positions=positions, position_votes=user_position_votes)
+
 
 @app.route('/candidates', methods=['GET'])
 def route_candidates():
@@ -80,8 +127,26 @@ def get_candidates():
 
     if requested_position not in candidates.keys():
         return render_template('error.htm')
-
     return render_template('candidates.htm', userID=userID, position=requested_position, candidates=candidates[requested_position], current_vote=user_candidate_position_vote)
+
+
+@app.route('/m_candidates', methods=['GET'])
+def m_route_candidates():
+    return redirect("/m", code=302)
+
+
+@app.route('/m_candidates', methods=['POST'])
+def m_get_candidates():
+    requested_position = request.form['position']
+    requested_position = requested_position
+
+    userID = request.form['userID']
+    candidates = backend.get_candidate_information()
+    user_candidate_position_vote = backend.get_user_votes_candidate_position(userID, requested_position)
+
+    if requested_position not in candidates.keys():
+        return render_template('error.htm')
+    return render_template('m_candidates.htm', userID=userID, position=requested_position, candidates=candidates[requested_position], current_vote=user_candidate_position_vote)
 
 @app.route('/vote', methods=['GET'])
 def route_vote():
@@ -95,6 +160,19 @@ def place_vote():
 
     backend.place_vote(userID, position, candidate)
     return render_template('vote_success.htm', userID=userID)
+
+@app.route('/m_vote', methods=['GET'])
+def m_route_vote():
+    return redirect("/m", code=302)
+
+@app.route('/m_vote', methods=['POST'])
+def m_place_vote():
+    userID = request.form['userID']
+    position = request.form['position']
+    candidate = request.form['candidate']
+
+    backend.place_vote(userID, position, candidate)
+    return render_template('m_vote_success.htm', userID=userID)
 
 
 @app.route("/stop")
@@ -118,6 +196,8 @@ def start_voting():
     if admin_key == settings["admin_key"]:
         global voting_open
         voting_open = True
+        global show_results
+        show_results = False
         with open("databases/votes.json", "w") as votes_file:
             votes_file.write('{"": {}}')
         return render_template('election_started.htm')

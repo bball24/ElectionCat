@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Positions</title>
+</head>
+<html>
+<style>
+a {
+  text-decoration: none;
+}
+
+h1 {
+  color: #dddddd;
+}
+
+h2 {
+  color: #00dd00;
+}
+
+h3 {
+  color: #bbbbbb;
+}
+
+p {
+  color: #ffffff;
+  padding: 40px 10px;
+}
+
+button {
+  color: #ffffff;
+  width: 100%;
+}
+
+div.header-center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.item-center {
+  width: 50%;
+  display: block;
+  background-color: #003399;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+}
+
+div.vote-bar-no {
+  width: 50%;
+  height: 10px;
+  display: block;
+  background-color: #bbbbbb;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: none;
+}
+
+div.vote-bar-yes {
+  width: 50%;
+  height: 10px;
+  display: block;
+  background-color: #00dd00;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: none;
+}
+</style>
+  <body>
+    <div class="header-center"><img src="https://www.acmucr.org/img/acm_ucr.png" alt="ACM@UCR Logo" width=auto height="150"></div>
+    <div class="header-center"><h1><font face="sans" size="20">Positions:</font></h1></div>
+
+    <table style="width:30%; text-align:center; margin-left:auto; margin-right:auto">
+      <tr>
+        <td><h2><font face="sans" size="5px">Vote Cast</font></h2></td>
+        <td><h3><font face="sans" size="5px">Vote Not Cast</font></h3></td>
+      </tr>
+    </table>
+      {% for position in positions %}
+    <div class="item-center">
+      <form method="POST" action="/m_candidates" class="inline">
+        <input type="hidden" name="position" value="{{ position }}">
+          <input type="hidden" name="userID" value="{{ userID }}">
+        <button type="submit" name="submit_param" value="submit_value" class="link-button" style="background-color:#003399; border-style: none">
+            <font face="sans" size="8">{{ position }}</font>
+        </button>
+      </form>
+    </div>
+
+        {% if position in position_votes %}
+          <div class="vote-bar-yes"></div>
+        {% else %}
+            <div class="vote-bar-no"></div>
+        {% endif %}
+
+      <br>
+      {% endfor %}
+  </body>
+</html>
