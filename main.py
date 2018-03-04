@@ -1,6 +1,5 @@
-from flask import Flask, request, render_template, make_response, redirect
+from flask import Flask, request, render_template, redirect
 import frontend
-import os
 app = Flask(__name__)
 
 global settings
@@ -9,7 +8,8 @@ global voting_open
 
 @app.route('/')
 def hello():
-    return render_template('home.htm')
+    global voting_open
+    return render_template('home.htm', voting_open=voting_open)
 
 
 @app.route('/reload')
@@ -34,7 +34,7 @@ def route_positions():
 def get_positions():
     userID = request.form['userID']
     # positions = get_positions()
-    positions = ["President", "Vice President", "Treasurer"]
+    positions = ["President", "Vice President", "Treasurer", "Secretary"]
     # user_position_votes = get_user_votes_positions(userID)
     user_position_votes = ["President"]
     return render_template('positions.htm', userID=userID, positions=positions, position_votes=user_position_votes)
@@ -83,6 +83,11 @@ def end():
     return render_template("end.htm")
 
 
+@app.route('/start', methods=['GET'])
+def start():
+    return render_template('start.htm')
+
+
 @app.route('/start_voting', methods=['GET'])
 def route_start_voting():
     return redirect("/", code=302)
@@ -94,16 +99,18 @@ def start_voting():
     admin_key = admin_key.lower()
     print(admin_key)
     if admin_key == settings["admin_key"]:
+        global voting_open
         voting_open = True
-    return render_template('election_start.htm')
+        return render_template('election_started.htm')
+    else:
+        return render_template('invalid_login.htm')
 
-
-@app.route('/end_election', methods=['GET'])
+@app.route('/end_voting', methods=['GET'])
 def route_end_election():
     return redirect("/", code=302)
 
 
-@app.route('/end_election', methods=['POST'])
+@app.route('/end_voting', methods=['POST'])
 def end_election():
     admin_key = request.form['admin_key']
     if not frontend.check_admin_key(admin_key, settings):
