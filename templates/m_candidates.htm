@@ -80,7 +80,7 @@ div.vote-bar-yes {
           <div class="item-center">
               <p><font face="sans"><b>{{ candidate }}</b></font></p>
               <p><font face="sans">{{ candidate_bio }}</font></p>
-              <form method="POST" action="/m_vote" class="inline">
+              <form method="POST" action="/m_vote" class="inline" style="height:20px">
                   <input type="hidden" name="userID" value="{{ userID }}">
                   <input type="hidden" name="position" value="{{ position }}">
                   <input type="hidden" name="candidate" value="{{ candidate }}">
