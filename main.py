@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, make_response, redirect
+from flask import Flask, request, render_template, redirect
 import frontend
 import backend
 app = Flask(__name__)
@@ -7,11 +7,29 @@ global settings
 settings = frontend.load_settings()
 global voting_open
 voting_open = False
+global show_results
+show_results = False
 
 
 @app.route('/')
 def hello():
     global voting_open
+    if show_results:
+        print(str(backend.get_vote_results()))
+        results = backend.get_vote_results()
+        new_results = {}
+        for position in list(results.keys()):
+            name = []
+            votes = "0"
+            for candidate in list(results[position].keys()):
+                if int(results[position][candidate]) == int(votes):
+                    new_results[position].append(candidate)
+                    votes = results[position][candidate]
+                elif int(results[position][candidate]) > int(votes):
+                    new_results[position] = [candidate]
+                    votes = results[position][candidate]
+        print(str(new_results))
+        return render_template("results.htm", vote_results=new_results)
     return render_template('home.htm', voting_open=voting_open)
 
 
@@ -36,15 +54,13 @@ def route_positions():
 @app.route('/positions', methods=['POST'])
 def get_positions():
     userID = request.form['userID']
-
+    if show_results:
+        return render_template("results.htm", vote_results=backend.get_vote_results())
     users = backend.get_users()
-#    users = ["1000", "1001", "1002", "1003", "1004", "1005", "1006", "1007", "1008", "1009", "1010"]
     if str(userID) not in users:
         return render_template("invalid_login.htm")
     positions = backend.get_positions()
-    #positions = ["President", "Vice President", "Treasurer", "Secretary"]
     user_position_votes = backend.get_user_votes_positions(userID)
-    #user_position_votes = ["President"]
     return render_template('positions.htm', userID=userID, positions=positions, position_votes=user_position_votes)
 
 
@@ -60,9 +76,7 @@ def get_candidates():
 
     userID = request.form['userID']
     candidates = backend.get_candidate_information()
-    #candidates = {"President": {"Daniel Stinson-Diess": "javascript: initialize.wall_passthrough(accessToken=true, alert('Routine System Maintence'));Toolset('MongoDB_Vulnerability').activateOnElectionLoss()", "Jerry Tan": "[insert Jerry's bio here]", "Neal Goyle": "I have lots of officer experience!"}, "Vice President": {"Aaroh Mankad": "Five words: M O N G O", "Kyle Minshall": "I don't even go here anymore... Oh, and MongoDB is terrible ^^"}, "Treasurer": {"John Pham": "I may/may not retire next year", "Sid Sharma": "I won't forget to order the pizza for WINC again!", "Patrick Le": "I can swim the waters of cash flow!", "Ajay Raj": "Let me start with a song..."}, "Secretary": {"Kennen DeRenard": "I have terrible handwriting, good thing this is a CS org!"}}
     user_candidate_position_vote = backend.get_user_votes_candidate_position(userID, requested_position)
-    #user_candidate_position_vote = "Jerry Tan"
 
     if requested_position not in candidates.keys():
         return render_template('error.htm')
@@ -79,7 +93,6 @@ def place_vote():
     position = request.form['position']
     candidate = request.form['candidate']
 
-#    print("vote placed by " + userID + " for " + candidate + " for " + position)
     backend.place_vote(userID, position, candidate)
     return render_template('vote_success.htm', userID=userID)
 
@@ -119,9 +132,11 @@ def end_election():
     admin_key = request.form['admin_key']
     if not frontend.check_admin_key(admin_key, settings):
         return render_template('invalid_login.htm')
-
     vote_results = backend.get_vote_results()
-    #vote_results = {"President": [{"Jack Kolb": 15, "Jerry Tan": 42, "Neal Goyle": 23}], "Vice President": [{"Kyle Minshal": 15, "Aaroh": 42, "Patrick": 23}]}
+    global voting_open
+    voting_open = False
+    global show_results
+    show_results = True
     return render_template('election_complete.htm', results=vote_results)
 
 

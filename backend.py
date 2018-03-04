@@ -1,5 +1,5 @@
 import json
-
+from pathlib import Path
 
 # list of users
 def get_users():
@@ -19,17 +19,26 @@ def get_positions():
 
 def get_votes():
     votes = {}
-    with open('databases/votes.json') as votes_file:
-       votes = json.load(votes_file)
+    if Path("databases/votes.json").is_file():
+        with open('databases/votes.json') as votes_file:
+           votes = json.load(votes_file)
+    else:
+        with open('databases/votes.json', "w") as votes_file:
+            votes_file.write('{"": {}}')
     return votes
 
 # list of positions the user has voted for
 def get_user_votes_positions(userID):
     userID = str(userID)
     positions = []
-    with open('databases/votes.json') as votes_file:
-       data = json.load(votes_file)
-       positions = list(data[userID].keys())
+    if Path("databases/votes.json").is_file():
+        with open('databases/votes.json') as votes_file:
+            data = json.load(votes_file)
+            if userID in list(data.keys()):
+                positions = list(data[userID].keys())
+    else:
+        with open('databases/votes.json', "w") as votes_file:
+            votes_file.write('{"": {}}')
     return positions
 
 # names/bios of all the candidates
@@ -59,9 +68,12 @@ def place_vote(userID, position, candidate):
     print(position)
     print(candidate)
     userID = str(userID)
-    with open('databases/votes.json') as votes_file:
-       data = json.load(votes_file)
-       data[userID][position] = candidate
+    if Path("databases/votes.json").is_file():
+        with open('databases/votes.json') as votes_file:
+            data = json.load(votes_file)
+            if userID not in data.keys():
+                data[userID] = {}
+            data[userID][position] = candidate
 
     with open('databases/votes.json', "w") as votes_file:
        json.dump(data, votes_file)

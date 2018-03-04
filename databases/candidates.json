@@ -1,36 +1,41 @@
 {
   "President":
   {
-    "Jack Kolb": "My name is Jack!",
-    "Aaroh Mankad": "My name is Aaroh!",
-    "Daniel Stinson-Diess": "My name is Daniel!"
+    "Aaroh Mankad": "Five words: M O N G O",
+    "Kyle Minshall": "PHP>JS .:. Kyle>Aaroh",
+    "Daniel Stinson-Diess": "javascript:activateSecurityHole(mongodb_vulnerability_D52y);FirewallBypass.subsystem.enable()",
+    "Neal Goyle": "I have more officer positions than you.",
+    "James Luo": "ౘ"
   },
 
   "Vice President":
   {
-    "Jerry Tan": "My name is Jerry!",
-    "Neal Goyle": "My name is Neal!",
-    "Patrick": "My name is Patrick!"
+    "Jerry Tan": "[insert Jerry's bio here]",
+    "Katie Fukuda": "What I lack in size I make up in spirit",
+    "Patrick Timbucum": "My girlfriend made John paint his nails"
   },
 
   "Treasurer":
   {
-    "Sid Sharma": "I promise! Never again!",
+    "Sid Sharma": "I promise to order the pizza next time",
     "Ajay Raj": "I shall start with a song...",
-    "Patrick Le": "I'm swimming in money"
+    "Patrick Le": "I'm swimming in money",
+    "Haasith Sanka": "My startup has been profitable: $0.15",
+    "Edward Huh": "I'll make sure UCR remains telugu-free"
   },
 
   "Secretary":
   {
-    "Kennen DeRenard": "I promise! Never again!",
-    "John Pham": "I shall start with a song...",
-    "Harley Selzer": "I'm swimming in money"
+    "Kennen DeRenard": "My GPA more than qualifies me for this position",
+    "Karen Kong": "LOLLL ^^",
+    "Harley Seizer": "I can help you all with STAT 155",
+    "Jack Kolb": "Wait, this isn't ASME"
   },
 
   "Outreach Chair":
   {
-    "Jerry Jiang": "I promise! Never again!",
-    "Will Shiao": "I shall start with a song...",
-    "Cameron Morrin": "I'm swimming in money"
+    "Jerry Jiang": "More ICPC anyone?",
+    "Will Shiao": "I'll shiao you what I can do",
+    "Cameron Morrin": "I won't wipe out as your outreach chair"
   }
 }
