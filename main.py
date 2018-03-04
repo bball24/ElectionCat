@@ -36,6 +36,11 @@ def route_positions():
 @app.route('/positions', methods=['POST'])
 def get_positions():
     userID = request.form['userID']
+
+    # users = get_users()
+    users = [1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010]
+    if userID not in users:
+        return render_template("invalid_login.htm")
     # positions = get_positions()
     positions = ["President", "Vice President", "Treasurer", "Secretary"]
     # user_position_votes = get_user_votes_positions(userID)
