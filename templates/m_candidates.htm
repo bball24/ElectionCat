@@ -23,6 +23,7 @@ h3 {
 
 p {
   color: #ffffff;
+  vertical-align:middle;
 }
 
 button {
@@ -52,7 +53,7 @@ div.item-center {
 }
 
 div.return-bar {
-  width: 80%;
+  width: 30%;
   display: block;
   background-color: #223399;
   text-align: center;
@@ -85,7 +86,7 @@ div.vote-bar-yes {
                   <input type="hidden" name="position" value="{{ position }}">
                   <input type="hidden" name="candidate" value="{{ candidate }}">
                 <button type="submit" name="submit_param" value="submit_value" class="link-button" style="height:40px; background-color:#ff9900">
-                    <p><b>VOTE!</b></p>
+                    <p><b><font face="sans" size="5">VOTE!</font></b></p>
                 </button>
               </form>
           </div>
@@ -99,8 +100,8 @@ div.vote-bar-yes {
     <form method="POST" action="/m_positions" class="inline">
       <input type="hidden" name="userID" value="{{ userID }}">
         <div class="return-bar">
-        <button type="submit" class="return" style="height:40px; background-color:#003399">
-          <h3>Return</h3>
+        <button type="submit" class="return" style="height:80px; background-color:#003399">
+            <h3><font size="12">Return</font></h3>
         </button>
         </div>
     </form>
